@@ -15,11 +15,11 @@
         ";
         $check = mysqli_query($conn, $clientCheck);
         $updateClient = "UPDATE
-                `clients`, `sections`
+                `clients`
             SET
-                `clients`.name={$client}, `clients`.id={$newClientID}, `sections`.client_id={$newClientID}
+                `clients`.name={$client}, `clients`.id={$newClientID}
             WHERE
-                `clients`.id={$clientID} AND `sections`.client_id={$clientID} OR `clients`.id={$clientID}
+                `clients`.id={$clientID}
         ";
         if(mysqli_num_rows($check) === 0){
             updateData($conn, $updateClient);
@@ -44,22 +44,22 @@
             FROM
                 `sections`
             WHERE
-                id = $newSectionID
+                id=$newSectionID
         ";
         $clientCheck = "SELECT
                 id
             FROM
                 `clients`
-            WHERE id = $clientID
+            WHERE id=$clientID
         ";
         $checkExistingClient = mysqli_query($conn, $clientCheck);
         $checkExistingSection = mysqli_query($conn, $sectionCheck);
         $updateSection = "UPDATE
-                `sections`, `links`
+                `sections`
             SET
-                `sections`.name={$sectionName}, `sections`.id={$newSectionID}, `sections`.client_id={$clientID}, `links`.section_id={$newSectionID}
+                `sections`.name={$sectionName}, `sections`.id={$newSectionID}, `sections`.client_id={$clientID}
             WHERE
-                `sections`.id={$sectionID} AND `links`.section_id={$sectionID} OR `sections`.id={$sectionID}
+                `sections`.id={$sectionID}
         ";
         if(mysqli_num_rows($checkExistingClient) !== 0){
             if(mysqli_num_rows($checkExistingSection) === 0){
@@ -91,14 +91,14 @@
             FROM
                 `sections`
             WHERE
-                id = $sectionID
+                id=$sectionID
         ";
         $linkCheck = "SELECT
                 id
             FROM
                 `links`
             WHERE
-                id = $newLinkID
+                id=$newLinkID
         ";
         $checkExistingSection = mysqli_query($conn, $sectionCheck);
         $checkExistingLink = mysqli_query($conn, $linkCheck);

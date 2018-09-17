@@ -8,21 +8,21 @@
                 `clients`, `sections`, `links`
             FROM
                 `clients`
-                INNER JOIN `sections`
-                    ON `sections`.client_id = `clients`.id
-                INNER JOIN `links`
-                    ON `links`.section_id = `sections`.id
+            INNER JOIN `sections`
+                ON `sections`.client_id = `clients`.id
+            INNER JOIN `links`
+                ON `links`.section_id = `sections`.id
             WHERE
                 `clients`.id={$clientID}
         ";
         updateData($conn, $deleteClient);
-    }
+    };
     if($_POST['section_name']){
         // Client ID
         $clientID = $_POST['client_id'];
         // Section Name
         $sectionName = $_POST['section_name'];
-        // Section 'id'
+        // Section ID
         $sectionID = $_POST['section'];
         $deleteSection = "DELETE
                 `sections`, `links`
@@ -34,13 +34,13 @@
                 `sections`.id={$sectionID}
         ";
         updateData($conn, $deleteSection);
-        }
+        };
     if($_POST['link_name']){
-        // Section 'id'
+        // Section ID
         $sectionID = $_POST['section'];
         // Link Name
         $linkName = $_POST['link_name'];
-        // Link 'id'
+        // Link ID
         $linkID = $_POST['link'];
         $deleteLink = "DELETE FROM
                 `links`
@@ -48,5 +48,5 @@
                 `id`={$linkID}
         ";
         updateData($conn, $deleteLink);
-    }
+    };
 ?>

@@ -4,16 +4,10 @@
         $client = $_POST['client'];
         // Client ID
         $clientID = $_POST['client_id'];
-        $deleteClient = "DELETE
-                `clients`, `sections`, `links`
-            FROM
+        $deleteClient = "DELETE FROM
                 `clients`
-            INNER JOIN `sections`
-                ON `sections`.client_id = `clients`.id
-            INNER JOIN `links`
-                ON `links`.section_id = `sections`.id
             WHERE
-                `clients`.id={$clientID}
+                id={$clientID}
         ";
         updateData($conn, $deleteClient);
     };
@@ -24,17 +18,13 @@
         $sectionName = $_POST['section_name'];
         // Section ID
         $sectionID = $_POST['section'];
-        $deleteSection = "DELETE
-                `sections`, `links`
-            FROM
+        $deleteSection = "DELETE FROM
                 `sections`
-            INNER JOIN `links`
-                ON `links`.section_id = `sections`.id
             WHERE
-                `sections`.id={$sectionID}
+                id={$sectionID}
         ";
         updateData($conn, $deleteSection);
-        };
+    };
     if($_POST['link_name']){
         // Section ID
         $sectionID = $_POST['section'];

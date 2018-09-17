@@ -5,12 +5,6 @@
         $output['error'] = 'error connect to DB: '. mysqli_error();
         print(json_encode($output));
     }
-    ?>
-    // Data Assignment
-
-    <?php
-    print_r($_POST);
-
     if($_POST){
         $task = $_POST['task'];
         switch($task) {
@@ -24,11 +18,6 @@
                 include "$task.php";
                 break;
         }
-        // // Check Queries
-        // $changeClientQuery = "SELECT *
-        // FROM `clients`
-        // WHERE `id` = `$clientID`
-        // ";
     }
     function updateData($conn, $query) {
         $result = mysqli_query($conn, $query);

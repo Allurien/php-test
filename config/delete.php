@@ -17,9 +17,11 @@
         ";
         updateData($conn, $deleteClient);
     }
-    if($_POST['section']){
+    if($_POST['section_name']){
         // Client ID
         $clientID = $_POST['client_id'];
+        // Section Name
+        $sectionName = $_POST['section_name'];
         // Section 'id'
         $sectionID = $_POST['section'];
         $deleteSection = "DELETE
@@ -33,9 +35,11 @@
         ";
         updateData($conn, $deleteSection);
         }
-    if($_POST['link']){
+    if($_POST['link_name']){
         // Section 'id'
         $sectionID = $_POST['section'];
+        // Link Name
+        $linkName = $_POST['link_name'];
         // Link 'id'
         $linkID = $_POST['link'];
         $deleteLink = "DELETE FROM
